@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE smarty [
+<!ENTITY bold "&lt;b&gt;">
+<!ENTITY ebold "&lt;/b&gt;">
+<!ENTITY spsp "&#160;&#160;">
+]>
+<smarty>
+
+<smarty_variable>
+
+  <variable name="get">
+    <desc>It's identical with $_GET.</desc>
+    <desc lang="ja">$_GETと同一です。</desc>
+  </variable>
+
+  <variable name="post">
+    <desc>This is a post parameter. It's identical with $_POST.</desc>
+    <desc lang="ja">$_POSTと同一です。</desc>
+  </variable>
+
+  <variable name="cookies">
+    <desc>It's identical with $_COOKIES.</desc>
+    <desc lang="ja">$_COOKIEと同一です。</desc>
+  </variable>
+
+  <variable name="server">
+    <desc>It's identical with $_SERVER.</desc>
+    <desc lang="ja">$_SERVERと同一です。</desc>
+  </variable>
+
+  <variable name="env">
+    <desc>An environment variable is acquired.</desc>
+    <desc lang="ja">環境変数を取得します。</desc>
+  </variable>
+
+  <variable name="session">
+    <desc>It's identical with $_SESSION.</desc>
+    <desc lang="ja">$_SESSIONと同一です。</desc>
+  </variable>
+
+  <variable name="request">
+    <desc>It's identical with $_REQUEST.</desc>
+    <desc lang="ja">$_REQUESTと同一です。</desc>
+  </variable>
+
+  <variable name="now">
+    <desc>It's identical with function of time().</desc>
+    <desc lang="ja">現在のタイムスタンプを返します。\n関数 time() と同一です。</desc>
+  </variable>
+
+  <variable name="const">
+    <desc>Refer to the fixed integer defined in PHP.</desc>
+    <desc lang="ja">PHPで定義された定数を参照します。</desc>
+  </variable>
+
+  <variable name="capture">
+    <desc>Access output of the template captured by the {capture}...{/capture} function.</desc>
+    <desc lang="ja">{capture}...{/capture} 関数でキャプチャしたテンプレートの出力にアクセスします。</desc>
+  </variable>
+
+  <variable name="config">
+    <desc>I access output of the template captured by the {capture}...{/capture} function.</desc>
+    <desc lang="ja">読み込まれた config 変数を参照します。{#変数名#}と同義です。</desc>
+  </variable>
+
+  <variable name="section">
+     <desc>The variable which can be used in the {section}...{/section} function.</desc>
+     <desc lang="ja">
+         {section}...{/section} 関数内で使用できる変数です。\n
+         {$smarty.section.セクション名.プロパティ} とアクセスします。\n
+         &bold;使用可能プロパティ&ebold;\n
+         &spsp;index 現在のループインデックスを表示\n
+         &spsp;index_prev 前回のループインデックスを表示\n
+         &spsp;index_next index_next は次回のループインデックスを表示\n
+         &spsp;iteration iteration は現在のループが反復された回数を表示\n
+         &spsp;first 一回目の処理を行っている場合に TRUE\n
+         &spsp;last 最後の処理を行っている場合に TRUE\n
+         &spsp;rownum 現在のループが反復された回数を表示(=iteration)\n
+         &spsp;loop ループの最後のインデックス番号を表示\n
+         &spsp;total ループしたトータル回数を表示\n
+         &spsp;show\n
+     </desc>
+  </variable>
+
+  <variable name="foreach">
+     <desc>The variable which can be used in the {foreach}...{/foreach} function.</desc>
+     <desc lang="ja">
+         {foreach}...{/foreach} 関数内で使用できる変数です。\n
+         {$smarty.foreach.セクション名.プロパティ} とアクセスします。\n
+         &bold;使用可能プロパティ&ebold;\n
+         &spsp;index 現在のループインデックスを表示\n
+         &spsp;iteration iteration は現在のループが反復された回数を表示\n
+         &spsp;first 一回目の処理を行っている場合に TRUE\n
+         &spsp;last 最後の処理を行っている場合に TRUE\n
+         &spsp;total ループしたトータル回数を表示\n
+         &spsp;show\n
+     </desc>
+  </variable>
+
+  <variable name="template">
+     <desc>The name of the template which is being processed at present (not including directories) is returned.</desc>
+     <desc lang="ja">現在処理中のテンプレートの名前 (ディレクトリを含まない) を返します。 </desc>
+  </variable>
+
+  <variable name="version">
+     <desc>The version of Smarty which compiled this template is returned.</desc>
+     <desc lang="ja">このテンプレートをコンパイルした Smarty のバージョンを返します。</desc>
+  </variable>
+
+  <variable name="ldelim">
+     <desc>Refer to the left delimiter. It's synonymous to {ldelim}.</desc>
+     <desc lang="ja">左デリミタを参照します。{ldelim}と同義です。</desc>
+  </variable>
+
+  <variable name="rdelim">
+     <desc>Refer to the right delimiter. It's synonymous to {rdelim}.</desc>
+     <desc lang="ja">右デリミタを参照します。{rdelim}と同義です。</desc>
+  </variable>
+
+</smarty_variable>
+
+<modifiers>
+
+  <modifier name="capitalize">
+    <desc>This is used to capitalize the first letter of all words in a variable.</desc>
+    <desc lang="ja">変数内の全ての単語の先頭を大文字で開始します。</desc>
+    <parameters>
+      <parameter position="1" type="boolean" required="no" default="false">
+        <desc>This determines whether or not words with digits will be uppercased</desc>
+        <desc lang="ja">数字を伴う語も大文字にするか</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="cat">
+    <desc>This value is concatenated to the given variable.</desc>
+    <desc lang="ja">文字列を結合します。</desc>
+    <parameters>
+      <parameter position="1" type="string" required="no" default='""'>
+        <desc>This value to catenate to the given variable.</desc>
+        <desc lang="ja">結合する文字列</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="count_characters">
+    <desc>This is used to count the integer of characters in a variable.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; 文字数をカウントします。</desc>
+    <parameters>
+      <parameter position="1" type="boolean" required="no" default="false">
+        <desc>This determines whether or not to include whitespace characters in the count.</desc>
+        <desc lang="ja">空白文字もカウントするか</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="count_paragraphs">
+    <desc>This is used to count the integer of paragraphs in a variable.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; パラグラフ（段落）数をカウントします。</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="count_sentences">
+    <desc>This is used to count the integer of sentences in a variable.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; センテンス（文）数をカウントします。</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="count_words">
+    <desc>This is used to count the integer of words in a variable.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; ワード（語）数をカウントします</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="date_format">
+    <desc>This formats a date and time into the given strftime() format.</desc>
+    <desc lang="ja">タイムスタンプを形式にフォーマットします（形式の指定方法は strftime() と同じ）</desc>
+    <parameters>
+      <parameter position="1" type="string" required="no" default='"%b %e, %Y"'>
+        <desc>This is the format for the outputted date.</desc>
+        <desc lang="ja">フォーマット形式</desc>
+      </parameter>
+      <parameter position="2" type="string" required="no">
+        <desc>This is the default date if the input is empty.</desc>
+        <desc lang="ja">入力が空のときのデフォルトの日付</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="default">
+    <desc>This is used to set a default value for a variable.</desc>
+    <desc lang="ja">変数のデフォルト値を設定します。\n変数が空であるか設定されていない場合に、 代わりとしてデフォルト値が表示されます。</desc>
+    <parameters>
+      <parameter position="1" type="string" required="no" default='""'>
+        <desc>This is the default value to output if the variable is empty.</desc>
+        <desc lang="ja">変数が空の場合に表示されるデフォルト値</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="escape">
+    <desc>This is used to encode/escape a variable to html url single quotes, hex escape, hexentity, javascript and mail escape.</desc>
+    <desc lang="ja">変数のエンコードやエスケープを行います。\nエスケープの形式は html、htmlall、url、urlpathinfo、quotes、hex、hexentity、javascript、mail のいずれかとなります。</desc>
+    <parameters>
+      <parameter position="1" type="string" required="no" default='"html"'>
+        <desc>This is the escape format to use.</desc>
+        <desc lang="ja">使用するエスケープフォーマット</desc>
+      </parameter>
+      <parameter position="2" type="string" required="no" default='"ISO-8859-1"'>
+        <desc>The character set encoding passed to htmlentities() et. al.</desc>
+        <desc lang="ja">文字エンコーディング</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="indent">
+    <desc>This indents a string at each line, default is 4.</desc>
+    <desc lang="ja">各行で文字列をインデントします。</desc>
+    <parameters>
+      <parameter position="1" type="integer" required="no" default="4">
+        <desc>This determines how many characters to indent to.</desc>
+        <desc lang="ja">インデントする文字数</desc>
+      </parameter>
+      <parameter position="2" type="string" required="no" default='" "'>
+        <desc>This is the character used to indent with.</desc>
+        <desc lang="ja">インデントに使用する文字</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="lower">
+    <desc>This is used to lowercase a variable.</desc>
+    <desc lang="ja">小文字に置き換えます。strtolower() 関数と同義です。</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="nl2br">
+    <desc>All linebreaks will be converted to &lt;br /&gt; tags in the given variable.</desc>
+    <desc lang="ja">改行を &lt;br /&gt; タグに変換します。 nl2br() 関数と同義です。</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="regex_replace">
+    <desc>A regular expression search and replace on a variable.</desc>
+    <desc lang="ja">正規表現による置換を行います。 正規表現は preg_replace() の構文を使用してください。</desc>
+    <parameters>
+      <parameter position="1" type="string" required="yes">
+        <desc>This is the regular expression to be replaced.</desc>
+        <desc lang="ja">置換対象文字列の正規表現</desc>
+      </parameter>
+      <parameter position="2" type="string" required="yes">
+        <desc>This is the string of text to replace with.</desc>
+        <desc lang="ja">置換文字列</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="replace">
+    <desc>A simple search and replace on a variable.</desc>
+    <desc lang="ja">文字列の置換を行います。str_replace() 関数と同義です。 </desc>
+    <parameters>
+      <parameter position="1" type="string" required="yes">
+        <desc>This is the string of text to be replaced.</desc>
+        <desc lang="ja">置換対象文字列</desc>
+      </parameter>
+      <parameter position="2" type="string" required="yes">
+        <desc>This is the string of text to replace with.</desc>
+        <desc lang="ja">置換文字列</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="spacify">
+    <desc>spacify is a way to insert a space between every character of a variable.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; 各文字間にスペースを挿入します。</desc>
+    <parameters>
+      <parameter position="1" type="string" required="no" default='" "'>
+        <desc>This what gets inserted between each character of the variable.</desc>
+        <desc lang="ja">スペーサとして使用する文字</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="string_format">
+    <desc>This is a way to format strings, such as decimal integers and such.</desc>
+    <desc lang="ja">文字列をフォーマットします。フォーマット形式は sprintf() の構文を使用してください。 </desc>
+    <parameters>
+      <parameter position="1" type="string" required="yes">
+        <desc>This is what format to use. (sprintf)</desc>
+        <desc lang="ja">フォーマット形式</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="strip">
+    <desc>This replaces all repeated spaces, newlines and tabs with a single space, or with a supplied string.</desc>
+    <desc lang="ja">空白・改行・タブを、１つの空白または与えられた文字列によって置き換えます。</desc>
+      <parameter position="1" type="string" required="no" default='""'>
+        <desc>undocumented</desc>
+        <desc lang="ja">置き換える文字</desc>
+      </parameter>
+  </modifier>
+
+  <modifier name="strip_tags">
+    <desc>This strips out markup tags, basically anything between &lt; and &gt;.</desc>
+    <desc lang="ja">タグを取り除きます。</desc>
+    <parameters>
+      <parameter position="1" type="boolean" required="no" default="true">
+        <desc>This determines wether the tags are replaced by ' ' or by ''</desc>
+        <desc lang="ja">タグの代わりに空白を挿入するか</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="truncate">
+    <desc>This truncates a variable to a character length, default is 80.</desc>
+    <desc lang="ja">&bold;(マルチバイト不可)&ebold; 文字列を一定の長さで切り詰めます。</desc>
+    <parameters>
+      <parameter position="1" type="integer" required="no" default="80">
+        <desc>This determines how many characters to truncate to.</desc>
+        <desc lang="ja">切り詰める長さ</desc>
+      </parameter>
+      <parameter position="2" type="string" required="no" default="...">
+        <desc>This is a text string that replaces the truncated text. Its length is NOT included in the truncation length setting.</desc>
+        <desc lang="ja">切り捨てが発生した際に終端に付加する文字列</desc>
+      </parameter>
+      <parameter position="3" type="boolean" required="no" default="false">
+        <desc>This determines whether or not to truncate at a word boundary (false), or at the exact character (true).</desc>
+        <desc lang="ja">単語境界を考慮せずに長さちょうどで切り詰めるか</desc>
+      </parameter>
+      <parameter position="4" type="boolean" required="no" default="false">
+        <desc>This determines whether the truncation happens at the end of the string (false), or in the middle of the string (true). Note that if this setting is true, then word boundaries are ignored.</desc>
+        <desc lang="ja">文字列の末尾ではなく中間を切り詰めるか</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+  <modifier name="upper">
+    <desc>This is used to uppercase a variable.</desc>
+    <desc lang="ja">大文字に置き換えます。strtoupper() 関数と同義です。</desc>
+    <parameters/>
+  </modifier>
+
+  <modifier name="wordwrap">
+    <desc>wordwrap wraps a string to a column width, default is 80.</desc>
+    <desc lang="ja">指定したカラム幅で文字列を折り返します。</desc>
+    <parameters>
+      <parameter position="1" type="integer" required="no" default="80">
+        <desc>This determines how many columns to wrap to.</desc>
+        <desc lang="ja">折り返す文字数</desc>
+      </parameter>
+      <parameter position="2" type="string" required="no" default='"\n"'>
+        <desc>This is the string used to wrap words with.</desc>
+        <desc lang="ja">折り返しの文字</desc>
+      </parameter>
+      <parameter position="3" type="boolean" required="no" default="false">
+        <desc>This determines whether or not to wrap at a word boundary (false), or at the exact character (true).</desc>
+        <desc lang="ja">単語境界を考慮せずに折り返すか</desc>
+      </parameter>
+    </parameters>
+  </modifier>
+
+</modifiers>
+
+<functions>
+
+  <function name="capture" block="true">
+    <desc>{capture} is used to collect the output of the template into a variable instead of displaying it.</desc>
+    <desc lang="ja">
+      {capture}{/capture} で囲まれた部分の出力を指定された変数に代入します。\n
+      キャプチャされたコンテンツは、{$smarty.capture.ブロック名}によって利用できます。\n
+      name 属性を指定しない場合は default が使われ、{$smarty.capture.default} となります。
+    </desc>
+    <parameters>
+      <parameter name="name" type="string" required="no" default="default">
+        <desc>The name of the captured block</desc>
+        <desc lang="ja">キャプチャされるブロックの名前</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>The variable name where to assign the captured output to</desc>
+        <desc lang="ja">出力を割り当てるための変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="config_load">
+    <desc>{config_load} is used for loading config #variables# from a configuration file into the template.</desc>
+    <desc lang="ja">設定ファイルを読み込んで変数をセットします。</desc>
+    <parameters>
+      <parameter name="file" type="string" required="yes">
+        <desc>The name of the config file to include</desc>
+        <desc lang="ja">設定ファイル名</desc>
+      </parameter>
+      <parameter name="section" type="string" required="no">
+        <desc>The name of the section to load</desc>
+        <desc lang="ja">セクション名</desc>
+      </parameter>
+      <parameter name="scope" type="string" required="no" default="local">
+        <desc>How the scope of the loaded variables are treated, which must be one of local, parent or global.</desc>
+        <desc lang="ja">変数のスコープ（local、parent、global のいずれか）</desc>
+      </parameter>
+      <parameter name="global" type="boolean" required="no" default="false">
+        <desc>Whether or not variables are visible to the parent template, same as scope=parent.</desc>
+        <desc lang="ja">変数を親テンプレートから参照可能にするか</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="foreach" block="true">
+    <desc>{foreach} loops are an alternative to {section} loops. {foreach} is used to loop over a single associative array.</desc>
+    <desc lang="ja">単純な連想配列の各要素のループを構成します。</desc>
+    <parameters>
+      <parameter name="from" type="array" required="yes">
+        <desc>The array you are looping through</desc>
+        <desc lang="ja">ループに使用する配列</desc>
+      </parameter>
+      <parameter name="item" type="string" required="yes">
+        <desc>The name of the variable that is the current element</desc>
+        <desc lang="ja">配列の要素を示す変数名</desc>
+      </parameter>
+      <parameter name="key" type="string" required="no">
+        <desc>The name of the variable that is the current key</desc>
+        <desc lang="ja">配列のキーを示す変数名</desc>
+      </parameter>
+      <parameter name="name" type="string" required="no">
+        <desc>The name of the foreach loop for accessing foreach properties</desc>
+        <desc lang="ja">{foreach} ブロック名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="foreachelse">
+    <desc>{foreachelse} is executed when there are no values in the from variable.</desc>
+    <desc lang="ja">
+       {foreach} で指定された配列が空のとき出力します。\n
+       {foreach}...{foreachelse}...{/foreach} のように使用します。
+    </desc>
+  </function>
+
+  <function name="if" space="true" block="true">
+    <desc>A conditional branch is performed.</desc>
+    <desc lang="ja">条件分岐を行います。</desc>
+  </function>
+
+  <function name="elseif" space="true">
+    <desc>A conditional branch is performed.</desc>
+    <desc lang="ja">条件分岐を行います。{if}...{/if} ブロック内で使用します。</desc>
+  </function>
+
+  <function name="else">
+    <desc>A conditional branch is performed.</desc>
+    <desc lang="ja">条件分岐を行います。{if}...{/if} ブロック内で使用します。</desc>
+  </function>
+
+  <function name="include">
+    <desc>{include} tags are used for including other templates in the current template.</desc>
+    <desc lang="ja">外部テンプレートファイルを読み込みます。</desc>
+    <parameters>
+      <parameter name="file" type="string" required="yes">
+        <desc>The name of the template file to include</desc>
+        <desc lang="ja">テンプレートファイル名</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>The name of the variable that the output of include will be assigned to</desc>
+        <desc lang="ja">インクルードした内容を格納する変数名</desc>
+      </parameter>
+      <parameter name="[var...]" type="mixed" required="no">
+        <desc>variable to pass local to template</desc>
+        <desc lang="ja">テンプレートに渡す変数</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="include_php">
+    <desc>{include_php} is pretty much deprecated from Smarty, you can accomplish the same functionality via a custom template function.</desc>
+    <desc lang="ja">&bold;(非推奨関数)&ebold; PHPスクリプトを読み込みます。</desc>
+    <parameters>
+      <parameter name="file" type="string" required="yes">
+        <desc>The name of the php file to include</desc>
+        <desc lang="ja">php ファイル名</desc>
+      </parameter>
+      <parameter name="once" type="boolean" required="no" default="true">
+        <desc>whether or not to include the php file more than once if included multiple times</desc>
+        <desc lang="ja">同じファイルが複数回インクルードされた場合に一度だけインクルードするかどうか</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>The name of the variable that the output of include_php will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="insert">
+    <desc>{insert} tags work much like {include} tags, except that {insert} tags are NOT cached when you have template caching enabled.</desc>
+    <desc lang="ja">キャッシュを無効にし、関数を呼び出します。</desc>
+    <parameters>
+      <parameter name="name" type="string" required="yes">
+        <desc>The name of the insert function (insert_name)</desc>
+        <desc lang="ja">呼び出す関数の名前</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>The name of the template variable the output will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+      <parameter name="script" type="string" required="no">
+        <desc>The name of the php script that is included before the insert function is called</desc>
+        <desc lang="ja">関数を呼出し前にインクルードされるPHPスクリプト名</desc>
+      </parameter>
+      <parameter name="[var...]" type="[var type]" required="no">
+        <desc>variable to pass to insert function</desc>
+        <desc lang="ja">関数に渡す変数</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="ldelim">
+    <desc>Refer to the left delimiter.</desc>
+    <desc lang="ja">左デリミタを参照します。{$smarty.const.ldelim}と同義です。</desc>
+  </function>
+
+  <function name="rdelim">
+    <desc>Refer to the right delimiter.</desc>
+    <desc lang="ja">右デリミタを参照します。{$smarty.const.rdelim}と同義です。</desc>
+  </function>
+
+  <function name="literal" block="true">
+    <desc>{literal} tags allow a block of data to be taken literally. This is typically used around javascript or stylesheet blocks where curly braces would interfere with the template delimiter syntax.</desc>
+    <desc lang="ja">{literal}...{/literal} ブロック内をリテラル文字列として扱います。\n（JavaScript や CSS ブロックを記述するときなどに使用します）</desc>
+    <parameters/>
+  </function>
+
+  <function name="php" block="true">
+    <desc>{php} tags allow php to be embedded directly into the template. They will not be escaped, regardless of the $php_handling setting.</desc>
+    <desc lang="ja">{php} ... {/php} ブロック内を php コードとして扱います。</desc>
+    <parameters/>
+  </function>
+
+  <function name="section" block="true">
+    <desc>Template sections are used for looping over arrays of data (just like {foreach}). All {section} tags must be paired with {/section} tags.</desc>
+    <desc lang="ja">数値添字配列または数値を基にしたループを構成します。\nfor文の代替して使用可能です。</desc>
+    <parameters>
+      <parameter name="name" type="string" required="yes">
+        <desc>The name of the section</desc>
+        <desc lang="ja">セクション名</desc>
+      </parameter>
+      <parameter name="loop" type="mixed" required="yes">
+        <desc>Value to determine the integer of loop iterations</desc>
+        <desc lang="ja">ループに使用する配列または終了値となる整数</desc>
+      </parameter>
+      <parameter name="start" type="integer" required="no" default="0">
+        <desc>The index position that the section will begin looping. If the value is negative, the start position is calculated from the end of the array.</desc>
+        <desc lang="ja">ループを開始するインデックス値（負の値のときは配列の終わりから）</desc>
+      </parameter>
+      <parameter name="step" type="integer" required="no" default="1">
+        <desc>The step value that will be used to traverse the loop array.</desc>
+        <desc lang="ja">ループの刻み幅</desc>
+      </parameter>
+      <parameter name="max" type="integer" required="no">
+        <desc>Sets the maximum integer of times the section will loop.</desc>
+        <desc lang="ja">ループ回数の最大値</desc>
+      </parameter>
+      <parameter name="show" type="boolean" required="no" default="true">
+        <desc>determines whether or not to show this section</desc>
+        <desc lang="ja">このセクションを表示するか</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="sectionelse">
+    <desc>{sectionelse} is executed when there are no values in the loop variable.</desc>
+    <desc lang="ja">
+       {section} でループを行わない場合に出力します。\n
+       {section}...{sectionelse}...{/section} のように使用します。
+    </desc>
+    <parameters/>
+  </function>
+
+  <function name="strip" block="true">
+    <desc>Anything within {strip}{/strip} tags are stripped of the extra spaces or carriage returns at the beginnings and ends of the lines before they are displayed.</desc>
+    <desc lang="ja">各行の先頭及び末尾の、連続する空白・改行・タブを削除します。</desc>
+    <parameters/>
+  </function>
+
+  <!-- Custom Functions -->
+  <function name="assign">
+    <desc>{assign} is used for assigning template variables during the execution of the template.</desc>
+    <desc lang="ja">変数に値を割り当てます。\n値が複雑な場合、変数を `バッククォート` で囲む必要があります。</desc>
+    <parameters>
+      <parameter name="var" type="string" required="yes">
+        <desc>The name of the variable being assigned</desc>
+        <desc lang="ja">変数名</desc>
+      </parameter>
+      <parameter name="value" type="string" required="yes">
+        <desc>The value being assigned</desc>
+        <desc lang="ja">値</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="counter">
+    <desc>{counter} is used to print out a count.</desc>
+    <desc lang="ja">カウント回数を表示します。(={$counter}が呼ばれた回数)</desc>
+    <parameters>
+      <parameter name="name" type="string" required="no" default="default">
+        <desc>The name of the counter</desc>
+        <desc lang="ja">カウンタ名</desc>
+      </parameter>
+      <parameter name="start" type="integer" required="no" default="1">
+        <desc>The initial integer to start counting from</desc>
+        <desc lang="ja">開始値</desc>
+      </parameter>
+      <parameter name="skip" type="integer" required="no" default="1">
+        <desc>The interval to count by</desc>
+        <desc lang="ja">刻み幅（ステップ値）</desc>
+      </parameter>
+      <parameter name="direction" type="string" required="no" default='"up"'>
+        <desc>The direction to count (up/down)</desc>
+        <desc lang="ja">増減（up または down）</desc>
+      </parameter>
+      <parameter name="print" type="boolean" required="no" default="true">
+        <desc>Whether or not to print the value</desc>
+        <desc lang="ja">値を表示するか</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>The template variable the output will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="cycle">
+    <desc>{cycle} is used to cycle though a set of values.</desc>
+    <desc lang="ja">値の設定に従って循環します。\nテーブル内のセルの色を交互に２色もしくはそれ以上の色に変更したり、\n配列の値を循環するような事が簡単に行えます。</desc>
+    <parameters>
+      <parameter name="values" type="mixed" required="yes">
+        <desc>The values to cycle through, either a comma delimited list (see delimiter attribute), or an array of values.</desc>
+        <desc lang="ja">循環される値(デフォルトの場合,区切り文字か配列)</desc>
+      </parameter>
+      <parameter name="name" type="string" required="no" default='"default"'>
+        <desc>The name of the cycle</desc>
+        <desc lang="ja">サイクル名</desc>
+      </parameter>
+      <parameter name="print" type="boolean" required="no" default="true">
+        <desc>Whether to print the value or not</desc>
+        <desc lang="ja">値を表示するか</desc>
+      </parameter>
+      <parameter name="advance" type="boolean" required="no" default="true">
+        <desc>Whether or not to advance to the next value</desc>
+        <desc lang="ja">次の値へ移るか(falseの場合、現在の値を維持)</desc>
+      </parameter>
+      <parameter name="delimiter" type="string" required="no" default='","'>
+        <desc>The delimiter to use in the values attribute.</desc>
+        <desc lang="ja">values で指定したリストの区切り文字</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>the template variable the output will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+      <parameter name="reset" type="boolean" required="no" default="false">
+        <desc>The cycle will be set to the first value and not advanced</desc>
+        <desc lang="ja">サイクルをリセットし最初の値を維持するか</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="debug">
+    <desc>A debugging console is output in a page.</desc>
+    <desc lang="ja">ページにデバッギングコンソールを出力します。\nPHP スクリプトにおける debug の設定に関係なく動作します。</desc>
+    <parameters>
+      <parameter name="output" type="string" required="no" default='"javascript"'>
+        <desc>output type, html or javascript</desc>
+        <desc lang="ja">出力タイプ（html、javascript のいずれか）</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="eval">
+    <desc>{eval} is used to evaluate a variable as a template. This can be used for things like embedding template tags/variables into variables or tags/variables into config file variables.</desc>
+    <desc lang="ja">与えられた変数をテンプレートとして評価します。</desc>
+    <parameters>
+      <parameter name="var" type="mixed" required="yes">
+        <desc>variable (or string) to evaluate</desc>
+        <desc lang="ja">評価式</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>the template variable the output will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="fetch">
+    <desc>{fetch} is used to fetch files from the local file system, http, or ftp and display the contents.</desc>
+    <desc lang="ja">ローカルファイルシステムもしくは http または ftp からファイルを取得します。</desc>
+    <parameters>
+      <parameter name="file" type="string" required="yes">
+        <desc>the file, http or ftp site to fetch</desc>
+        <desc lang="ja">ファイル名もしくは http または ftp アドレス</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>the template variable the output will be assigned to</desc>
+        <desc lang="ja">出力内容を格納する変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_checkboxes">
+    <desc>{html_checkboxes} is a custom function that creates an html checkbox group with provided data.</desc>
+    <desc lang="ja">
+       チェックボックスタグを生成します。\n
+       options を使用しない場合は、 values および output が必須となります。
+    </desc>
+    <parameters>
+      <parameter name="options" type="array" required="yes">
+        <desc>an associative array of values and output</desc>
+        <desc lang="ja">値と出力項目の対応付け用連想配列</desc>
+      </parameter>
+      <parameter name="values" type="array" required="no">
+        <desc>an array of values for checkbox buttons</desc>
+        <desc lang="ja">値の配列</desc>
+      </parameter>
+      <parameter name="output" type="array" required="no">
+        <desc>an array of output for checkbox buttons</desc>
+        <desc lang="ja">出力用配列</desc>
+      </parameter>
+      <parameter name="name" type="string" required="no" default='"checkbox"'>
+        <desc>name of checkbox list</desc>
+        <desc lang="ja">チェックボックス名</desc>
+      </parameter>
+      <parameter name="selected" type="mixed" required="no" default='""'>
+        <desc>the selected checkbox element(s)</desc>
+        <desc lang="ja">選択済み項目のリストまたは配列</desc>
+      </parameter>
+      <parameter name="separator" type="string" required="no" default='""'>
+        <desc>string of text to separate each checkbox item</desc>
+        <desc lang="ja">セパレータ文字列</desc>
+      </parameter>
+      <parameter name="labels" type="boolean" required="no" default="true">
+        <desc>add &lt;label&gt;-tags to the output</desc>
+        <desc lang="ja">&lt;label&gt;タグを付加するか</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_image">
+    <desc>{html_image} is a custom function that generates an HTML tag for an image.</desc>
+    <desc lang="ja">イメージタグを生成します。</desc>
+    <parameters>
+      <parameter name="file" type="string" required="yes">
+        <desc>name/path to image</desc>
+        <desc lang="ja">イメージファイル名</desc>
+      </parameter>
+      <parameter name="height" type="string" required="no">
+        <desc>height to display image</desc>
+        <desc lang="ja">高さ</desc>
+      </parameter>
+      <parameter name="width" type="string" required="no">
+        <desc>width to display image</desc>
+        <desc lang="ja">幅</desc>
+      </parameter>
+      <parameter name="basedir" type="string" required="no" default="$_ENV['DOCUMENT_ROOT']">
+        <desc>directory to base relative paths from</desc>
+        <desc lang="ja">基底ディレクトリ</desc>
+      </parameter>
+      <parameter name="alt" type="string" required="no" default='""'>
+        <desc>alternative description of the image</desc>
+        <desc lang="ja">イメージの説明</desc>
+      </parameter>
+      <parameter name="href" type="string" required="no">
+        <desc>href value to link the image to</desc>
+        <desc lang="ja">リンク先URL</desc>
+      </parameter>
+      <parameter name="path_prefix" type="string" required="no">
+        <desc>prefix for output path</desc>
+        <desc lang="ja">接頭辞</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_options">
+    <desc>{html_options} is a custom function that creates html &lt;select&gt;&lt;option&gt; group with provided data.</desc>
+    <desc lang="ja">
+       オプションタグを生成します。\n
+       options を使用しない場合は、 values および output が必須となります。
+    </desc>
+    <parameters>
+      <parameter name="options" type="array" required="yes">
+        <desc>an associative array of values and output</desc>
+        <desc lang="ja">値と出力項目の対応付け用連想配列</desc>
+      </parameter>
+      <parameter name="values" type="array" required="no">
+        <desc>an array of values for dropdown</desc>
+        <desc lang="ja">ドロップダウンリストの値の配列</desc>
+      </parameter>
+      <parameter name="output" type="array" required="no">
+        <desc>an array of output for dropdown</desc>
+        <desc lang="ja">出力用配列</desc>
+      </parameter>
+      <parameter name="selected" type="mixed" required="no" default='""'>
+        <desc>the selected option element(s)</desc>
+        <desc lang="ja">選択済み項目のリストまたは配列</desc>
+      </parameter>
+      <parameter name="name" type="string" required="no" default='""'>
+        <desc>name of select group</desc>
+        <desc lang="ja">select 名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_radios">
+    <desc>{html_radios} is a custom function that creates html radio button group with provided data.</desc>
+    <desc lang="ja">
+       ラジオボタンタグを生成します\n
+       options を使用しない場合は、 values および output が必須となります。
+    </desc>
+    <parameters>
+      <parameter name="options" type="array" required="yes">
+        <desc>an associative array of values and output</desc>
+        <desc lang="ja">値と出力項目の対応付け用連想配列</desc>
+      </parameter>
+      <parameter name="values" type="array" required="no">
+        <desc>an array of values for radio buttons</desc>
+        <desc lang="ja">値の配列</desc>
+      </parameter>
+      <parameter name="output" type="array" required="no">
+        <desc>an array of output for radio buttons</desc>
+        <desc lang="ja">出力用配列</desc>
+      </parameter>
+      <parameter name="name" type="string" required="no" default='"radio"'>
+        <desc>name of radio list</desc>
+        <desc lang="ja">radio 名</desc>
+      </parameter>
+      <parameter name="selected" type="string" required="no" default='""'>
+        <desc>the selected radio element</desc>
+        <desc lang="ja">選択済み項目</desc>
+      </parameter>
+      <parameter name="separator" type="string" required="no" default='""'>
+        <desc>string of text to separate each radio item</desc>
+        <desc lang="ja">セパレータ文字列</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_select_date">
+    <desc>{html_select_date} is a custom function that creates date dropdowns for you.</desc>
+    <desc lang="ja">日付選択用ドロップダウンリストを生成します。</desc>
+    <parameters>
+      <parameter name="prefix" type="string" required="no" default='"Date_"'>
+        <desc>what to prefix the var name with</desc>
+        <desc lang="ja">変数の接頭辞</desc>
+      </parameter>
+      <parameter name="time" type="timestamp/YYYY-MM-DD" required="no" default="current time in unix timestamp or YYYY-MM-DD format">
+        <desc>what date/time to use</desc>
+        <desc lang="ja">日付時刻形式</desc>
+      </parameter>
+      <parameter name="start_year" type="string" required="no" default='"current year"'>
+        <desc>the first year in the dropdown, either year integer, or relative to current year (+/- N)</desc>
+        <desc lang="ja">ドロップダウンリストの最初の年（直接指定もしくは現在からの±年数）</desc>
+      </parameter>
+      <parameter name="end_year" type="string" required="no" default="same as start_year">
+        <desc>the last year in the dropdown, either year integer, or relative to current year (+/- N)</desc>
+        <desc lang="ja">ドロップダウンリストの最後の年（直接指定もしくは現在からの±年数）</desc>
+      </parameter>
+      <parameter name="display_days" type="boolean" required="no" default="true">
+        <desc>whether to display days or not</desc>
+        <desc lang="ja">日を表示するか</desc>
+      </parameter>
+      <parameter name="display_months" type="boolean" required="no" default="true">
+        <desc>whether to display months or not</desc>
+        <desc lang="ja">月を表示するか</desc>
+      </parameter>
+      <parameter name="display_years" type="boolean" required="no" default="true">
+        <desc>whether to display years or not</desc>
+        <desc lang="ja">年を表示するか</desc>
+      </parameter>
+      <parameter name="month_format" type="string" required="no" default='"%B"'>
+        <desc>what format the month should be in (strftime)</desc>
+        <desc lang="ja">月の表示形式</desc>
+      </parameter>
+      <parameter name="day_format" type="string" required="no" default='"%02d"'>
+        <desc>what format the day output should be in (sprintf)</desc>
+        <desc lang="ja">日の表示形式</desc>
+      </parameter>
+      <parameter name="day_value_format" type="string" required="no" default='"%d"'>
+        <desc>what format the day value should be in (sprintf)</desc>
+        <desc lang="ja">日の表示形式</desc>
+      </parameter>
+      <parameter name="year_as_text" type="boolean" required="no" default="false">
+        <desc>whether or not to display the year as text</desc>
+        <desc lang="ja">年をテキスト表示するか</desc>
+      </parameter>
+      <parameter name="reverse_years" type="boolean" required="no" default="false">
+        <desc>display years in reverse order</desc>
+        <desc lang="ja">年を逆順表示するか</desc>
+      </parameter>
+      <parameter name="field_array" type="string" required="no" default="null">
+        <desc>if a name is given, the select boxes will be drawn such that the results will be returned to PHP in the form of name[Day], name[Year], name[Month].</desc>
+        <desc lang="ja">結果を配列で取得する場合の配列名</desc>
+      </parameter>
+      <parameter name="day_size" type="string" required="no" default="null">
+        <desc>adds size attribute to select tag if given</desc>
+        <desc lang="ja">日リストの size 属性</desc>
+      </parameter>
+      <parameter name="month_size" type="string" required="no" default="null">
+        <desc>adds size attribute to select tag if given</desc>
+        <desc lang="ja">月リストの size 属性</desc>
+      </parameter>
+      <parameter name="year_size" type="string" required="no" default="null">
+        <desc>adds size attribute to select tag if given</desc>
+        <desc lang="ja">年リストの size 属性</desc>
+      </parameter>
+      <parameter name="all_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to all select/input tags if given</desc>
+        <desc lang="ja">全リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="day_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">日リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="month_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">月リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="year_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">年リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="field_order" type="string" required="no" default='"MDY"'>
+        <desc>the order in which to display the fields</desc>
+        <desc lang="ja">年月日の表示順</desc>
+      </parameter>
+      <parameter name="field_separator" type="string" required="no" default="\n">
+        <desc>string printed between different fields</desc>
+        <desc lang="ja">各リスト間のセパレータ文字列</desc>
+      </parameter>
+      <parameter name="month_value_format" type="string" required="no" default='"%m"'>
+        <desc>strftime format of the month values, default is %m for month integers.</desc>
+        <desc lang="ja">月の表示形式</desc>
+      </parameter>
+      <parameter name="year_empty" type="string" required="no" default="null">
+        <desc>If supplied then the first element of the year's select-box has this value as it's label and "" as it's value. This is useful to make the select-box read "Please select a year" for example. Note that you can use values like "-MM-DD" as time-attribute to indicate an unselected year.</desc>
+        <desc lang="ja">年リストに含める非選択項目（ガイド文字列など）</desc>
+      </parameter>
+      <parameter name="month_empty" type="string" required="no" default="null">
+        <desc>If supplied then the first element of the month's select-box has this value as it's label and "" as it's value. . Note that you can use values like "YYYY--DD" as time-attribute to indicate an unselected month.</desc>
+        <desc lang="ja">月リストに含める非選択項目（ガイド文字列など）</desc>
+      </parameter>
+      <parameter name="day_empty" type="string" required="no" default="null">
+        <desc>If supplied then the first element of the day's select-box has this value as it's label and "" as it's value. Note that you can use values like "YYYY-MM-" as time-attribute to indicate an unselected day.</desc>
+        <desc lang="ja">日リストに含める非選択項目（ガイド文字列など）</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_select_time">
+    <desc>{html_select_time} is a custom function that creates time dropdowns for you.</desc>
+    <desc lang="ja">時刻選択用ドロップダウンリストを生成します。</desc>
+    <parameters>
+      <parameter name="prefix" type="string" required="no" default='"Time_"'>
+        <desc>what to prefix the var name with</desc>
+        <desc lang="ja">変数の接頭辞</desc>
+      </parameter>
+      <parameter name="time" type="timestamp" required="no" default="current time">
+        <desc>what date/time to use</desc>
+        <desc lang="ja">使用する日付時刻</desc>
+      </parameter>
+      <parameter name="display_hours" type="boolean" required="no" default="true">
+        <desc>whether or not to display hours</desc>
+        <desc lang="ja">時を表示するか</desc>
+      </parameter>
+      <parameter name="display_minutes" type="boolean" required="no" default="true">
+        <desc>whether or not to display minutes</desc>
+        <desc lang="ja">分を表示するか</desc>
+      </parameter>
+      <parameter name="display_seconds" type="boolean" required="no" default="true">
+        <desc>whether or not to display seconds</desc>
+        <desc lang="ja">秒を表示するか</desc>
+      </parameter>
+      <parameter name="display_meridian" type="boolean" required="no" default="true">
+        <desc>whether or not to display meridian (am/pm)</desc>
+        <desc lang="ja">午前午後（am/pm）を表示するか</desc>
+      </parameter>
+      <parameter name="use_24_hours" type="boolean" required="no" default="true">
+        <desc>whether or not to use 24 hour clock</desc>
+        <desc lang="ja">24時制で表示するか</desc>
+      </parameter>
+      <parameter name="minute_interval" type="integer" required="no" default="1">
+        <desc>integer interval in minute dropdown</desc>
+        <desc lang="ja">分リストの刻み幅</desc>
+      </parameter>
+      <parameter name="second_interval" type="integer" required="no" default="1">
+        <desc>integer interval in second dropdown</desc>
+        <desc lang="ja">秒リストの刻み幅</desc>
+      </parameter>
+      <parameter name="field_array" type="string" required="no">
+        <desc>outputs values to array of this name</desc>
+        <desc lang="ja">結果受け取り用配列名</desc>
+      </parameter>
+      <parameter name="all_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">全リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="hour_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">時リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="minute_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">分リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="second_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">秒リストに付加する追加属性</desc>
+      </parameter>
+      <parameter name="meridian_extra" type="string" required="no" default="null">
+        <desc>adds extra attributes to select/input tags if given</desc>
+        <desc lang="ja">午前午後リストに付加する追加属性</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="html_table">
+    <desc>{html_table} is a custom function that dumps an array of data into an HTML table.</desc>
+    <desc lang="ja">テーブルタグを生成します。</desc>
+    <parameters>
+      <parameter name="loop" type="array" required="yes">
+        <desc>array of data to loop through</desc>
+        <desc lang="ja">ループに使用する配列</desc>
+      </parameter>
+      <parameter name="cols" type="integer" required="no" default="3">
+        <desc>integer of columns in the table. if the cols-attribute is empty, but rows are given, then the integer of cols is computed by the integer of rows and the integer of elements to display to be just enough cols to display all elements. If both, rows and cols, are omitted cols defaults to 3.</desc>
+        <desc lang="ja">カラム数</desc>
+      </parameter>
+      <parameter name="rows" type="integer" required="no" default='""'>
+        <desc>integer of rows in the table. if the rows-attribute is empty, but cols are given, then the integer of rows is computed by the integer of cols and the integer of elements to display to be just enough rows to display all elements.</desc>
+        <desc lang="ja">行数</desc>
+      </parameter>
+      <parameter name="inner" type="string" required="no" default='"cols"'>
+        <desc>direction of consecutive elements in the loop-array to be rendered. cols means elements are displayed col-by-col. rows means elements are displayed row-by-row.</desc>
+        <desc lang="ja">配列の先行項目（cols、rows のいずれか）</desc>
+      </parameter>
+      <parameter name="table_attr" type="string" required="no" default='border="1"'>
+        <desc>attributes for table tag</desc>
+        <desc lang="ja">table タグの属性</desc>
+      </parameter>
+      <parameter name="tr_attr" type="string" required="no" default='""'>
+        <desc>attributes for tr tag (arrays are cycled)</desc>
+        <desc lang="ja">tr タグの属性</desc>
+      </parameter>
+      <parameter name="td_attr" type="string" required="no" default='""'>
+        <desc>attributes for td tag (arrays are cycled)</desc>
+        <desc lang="ja">td タグの属性</desc>
+      </parameter>
+      <parameter name="trailpad" type="string" required="no" default=" ">
+        <desc>value to pad the trailing cells on last row with (if any)</desc>
+        <desc lang="ja">最終行のパディング文字列</desc>
+      </parameter>
+      <parameter name="hdir" type="string" required="no" default='"right"'>
+        <desc>direction of each row to be rendered. possible values: right (left-to-right), and left (right-to-left)</desc>
+        <desc lang="ja">各行の表示方向（right、left のいずれか）</desc>
+      </parameter>
+      <parameter name="vdir" type="string" required="no" default='"down"'>
+        <desc>direction of each column to be rendered. possible values: down (top-to-bottom), up (bottom-to-top)</desc>
+        <desc lang="ja">各カラムの表示方向（down、up のいずれか）</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="mailto">
+    <desc>{mailto} automates the creation of mailto: links and optionally encodes them.</desc>
+    <desc lang="ja">mailto タグを生成します。</desc>
+    <parameters>
+      <parameter name="address" type="string" required="yes">
+        <desc>the e-mail address</desc>
+        <desc lang="ja">e-mail アドレス</desc>
+      </parameter>
+      <parameter name="text" type="string" required="no">
+        <desc>the text to display, default is the e-mail address</desc>
+        <desc lang="ja">表示文字列</desc>
+      </parameter>
+      <parameter name="encode" type="string" required="no" default='"none"'>
+        <desc>How to encode the e-mail. Can be one of none, hex, javascript or javascript_charcode.</desc>
+        <desc lang="ja">エンコード（none、hex、javascript、javascript_charcode のいずれか）</desc>
+      </parameter>
+      <parameter name="cc" type="string" required="no">
+        <desc>e-mail addresses to carbon copy. Separate entries by a comma.</desc>
+        <desc lang="ja">cc リスト</desc>
+      </parameter>
+      <parameter name="bcc" type="string" required="no">
+        <desc>e-mail addresses to blind carbon copy. Separate entries by a comma.</desc>
+        <desc lang="ja">bcc リスト</desc>
+      </parameter>
+      <parameter name="subject" type="string" required="no">
+        <desc>e-mail subject.</desc>
+        <desc lang="ja">本文</desc>
+      </parameter>
+      <parameter name="newsgroups" type="string" required="no">
+        <desc>newsgroups to post to. Separate entries by a comma.</desc>
+        <desc lang="ja">newsgroups リスト</desc>
+      </parameter>
+      <parameter name="followupto" type="string" required="no">
+        <desc>addresses to follow up to. Separate entries by a comma.</desc>
+        <desc lang="ja">フォローアップリスト</desc>
+      </parameter>
+      <parameter name="extra" type="string" required="no">
+        <desc>any extra information you want passed to the link, such as style sheet classes</desc>
+        <desc lang="ja">追加情報</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="math">
+    <desc>{math} allows the template designer to do math equations in the template.</desc>
+    <desc lang="ja">math 関数をテンプレート内で使用します。</desc>
+    <parameters>
+      <parameter name="equation" type="string" required="yes">
+        <desc>the equation to execute</desc>
+        <desc lang="ja">実行する等式</desc>
+      </parameter>
+      <parameter name="var" type="numeric" required="yes">
+        <desc>equation variable value</desc>
+        <desc lang="ja">等式に使用する変数</desc>
+      </parameter>
+      <parameter name="[var ...]" type="numeric" required="yes">
+        <desc>equation variable value</desc>
+        <desc lang="ja">等式に使用する変数</desc>
+      </parameter>
+      <parameter name="format" type="string" required="no">
+        <desc>the format of the result (sprintf)</desc>
+        <desc lang="ja">結果表示形式</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>template variable the output will be assigned to</desc>
+        <desc lang="ja">出力を割り当てるための変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="popup">
+    <desc>{popup} is used to create javascript popup windows. {popup_init} MUST be called first for this to work.</desc>
+    <desc lang="ja">
+        Javascriptポップアップウィンドウを生成します。\n
+        パラメータの一部を省略しているため、詳しくは公式サイトを参照してください。
+    </desc>
+    <parameters>
+      <parameter name="text" type="string" required="yes">
+        <desc>the equation to execute</desc>
+        <desc lang="ja">ポップアップウィンドウ中に表示するtext/html</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+  <function name="popup_init">
+    <desc>{popup} is an integration of overLib, a library used for popup windows.</desc>
+    <desc lang="ja">
+       ポップアップウィンドウ生成のための初期化を行います。\n
+       {popup} 関数を使用する予定のページ内で &bold;一度だけ&ebold; 呼び出す必要があります。\n
+       詳しくは公式サイトを参照してください。
+    </desc>
+    <parameters></parameters>
+  </function>
+
+  <function name="textformat" block="true">
+    <desc>{textformat} is a block function used to format text.</desc>
+    <desc lang="ja">{textformat}{/textformat} ブロック内のテキストをフォーマットします。</desc>
+    <parameters>
+      <parameter name="style" type="string" required="no">
+        <desc>preset style</desc>
+       <desc lang="ja">プリセットスタイル</desc>
+      </parameter>
+      <parameter name="indent" type="integer" required="no" default="0">
+        <desc>The integer of chars to indent every line</desc>
+        <desc lang="ja">インデントの桁数</desc>
+      </parameter>
+      <parameter name="indent_first" type="integer" required="no" default="0">
+        <desc>The integer of chars to indent the first line</desc>
+        <desc lang="ja">最初の行のインデント桁数</desc>
+      </parameter>
+      <parameter name="indent_char" type="string" required="no" default='" "'>
+        <desc>The character (or string of chars) to indent with</desc>
+        <desc lang="ja">インデントに使用する文字</desc>
+      </parameter>
+      <parameter name="wrap" type="integer" required="no" default="80">
+        <desc>How many characters to wrap each line to</desc>
+        <desc lang="ja">折り返し桁数</desc>
+      </parameter>
+      <parameter name="wrap_char" type="string" required="no" default='"\n"'>
+        <desc>The character (or string of chars) to break each line with</desc>
+        <desc lang="ja">折り返しに使用する文字</desc>
+      </parameter>
+      <parameter name="wrap_cut" type="boolean" required="no" default="false">
+        <desc>If true, wrap will break the line at the exact character instead of at a word boundary</desc>
+        <desc lang="ja">単語境界に関わらず指定桁数で折り返すか</desc>
+      </parameter>
+      <parameter name="assign" type="string" required="no">
+        <desc>the template variable the output will be assigned to</desc>
+        <desc lang="ja">出力を割り当てるための変数名</desc>
+      </parameter>
+    </parameters>
+  </function>
+
+</functions>
+
+</smarty>

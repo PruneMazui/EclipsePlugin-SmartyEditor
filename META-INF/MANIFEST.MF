@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SmartyEditor
+Bundle-SymbolicName: com.github.PruneMazui.SmartyEditor;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.github.PruneMazui.SmartyEditor.Activator
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.jf
+ ace.text,org.eclipse.core.resources,org.eclipse.ui.ide,org.eclipse.ui
+ .workbench.texteditor,org.eclipse.wst.sse.ui,org.eclipse.wst.html.ui,
+ org.eclipse.wst.html.core,org.eclipse.wst.sse.core,org.eclipse.wst.xm
+ l.core,org.eclipse.wst.xml.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+
